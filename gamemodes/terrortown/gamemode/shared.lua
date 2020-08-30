@@ -252,6 +252,11 @@ DefaultEquipment = {
 		EQUIP_RADAR,
 		"weapon_ttt_health_station"
 	},
+	[ROLE_CURSED] = {
+		EQUIP_ARMOR,
+		EQUIP_RADAR,
+		"weapon_ttt_health_station"
+	},
 	[ROLE_ASSASSIN] = {
 		EQUIP_ARMOR,
 		EQUIP_RADAR,
