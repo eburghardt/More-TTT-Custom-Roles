@@ -78,6 +78,14 @@ local function RoleChatRecv()
 			sender:Nick(),
 			Color(255, 255, 255),
 			": " .. text)
+
+	elseif role == ROLE_DETRAITOR then
+		chat.AddText(Color(70, 70, 20),
+			Format("(%s) ", string.upper(GetTranslation("detraitor"))),
+			Color(205, 196, 75),
+			sender:Nick(),
+			Color(255, 255, 255),
+			": " .. text)
 	
 	elseif role == ROLE_JESTER or role == ROLE_SWAPPER then
 		chat.AddText(Color(159, 0, 211),

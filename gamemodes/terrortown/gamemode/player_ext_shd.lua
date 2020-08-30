@@ -36,6 +36,8 @@ function plymeta:GetSwapper() return self:GetRole() == ROLE_SWAPPER end
 
 function plymeta:GetAssassin() return self:GetRole() == ROLE_ASSASSIN end
 
+function plymeta:GetDetraitor() return self:GetRole() == ROLE_DETRAITOR end
+
 function plymeta:GetKiller() return self:GetRole() == ROLE_KILLER end
 
 plymeta.IsTraitor = plymeta.GetTraitor
@@ -88,6 +90,8 @@ function plymeta:IsActiveSwapper() return self:IsActiveRole(ROLE_SWAPPER) end
 
 function plymeta:IsActiveAssassin() return self:IsActiveRole(ROLE_ASSASSIN) end
 
+function plymeta:IsActiveDetraitor() return self:IsActiveRole(ROLE_DETRAITOR) end
+
 function plymeta:IsActiveKiller() return self:IsActiveRole(ROLE_KILLER) end
 
 function plymeta:IsActiveSpecial() return self:IsSpecial() and self:IsActive() end
@@ -106,7 +110,8 @@ local role_strings = {
 	[ROLE_SWAPPER] = "swapper",
 	[ROLE_ASSASSIN] = "assassin",
 	[ROLE_KILLER] = "killer",
-	[ROLE_DOCTOR] = "doctor"
+	[ROLE_DOCTOR] = "doctor",
+	[ROLE_DETRAITOR] = "detraitor"
 };
 
 local GetRTranslation = CLIENT and LANG.GetRawTranslation or util.passthrough
