@@ -378,6 +378,8 @@ local function force_vampire(ply)
 	SendFullStateUpdate()
 end
 
+concommand.Add("ttt_force_vampire", force_vampire, nil, nil, FCVAR_CHEAT)
+
 local function force_cursed(ply)
 	ply:SetRole(ROLE_CURSED)
 	ply:SetMaxHealth(100)
@@ -395,8 +397,9 @@ local function force_cursed(ply)
 	SendFullStateUpdate()
 end
 
-concommand.Add("ttt_force_vampire", force_vampire, nil, nil, FCVAR_CHEAT)
+concommand.Add("ttt_force_cursed", force_cursed, nil, nil, FCVAR_CHEAT)
 
+==
 local function force_swapper(ply)
 	ply:SetRole(ROLE_SWAPPER)
 	ply:SetMaxHealth(100)
