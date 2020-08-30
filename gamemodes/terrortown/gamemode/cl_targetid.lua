@@ -201,7 +201,7 @@ function GM:PostDrawTranslucentRenderables()
 				end
 			end
 			if not hide_roles then
-				if client:GetRole() == ROLE_TRAITOR or client:GetRole() == ROLE_HYPNOTIST or client:GetRole() == ROLE_VAMPIRE or client:GetRole() == ROLE_ASSASSIN then
+				if client:GetRole() == ROLE_TRAITOR or client:GetRole() == ROLE_HYPNOTIST or client:GetRole() == ROLE_VAMPIRE or client:GetRole() == ROLE_ASSASSIN or client:GetRole() == ROLE_CURSED then
 					if v:GetRole() == ROLE_TRAITOR or v:GetRole() == ROLE_GLITCH then
 						render.SetMaterial(indicator_mattra_noz)
 						render.DrawQuadEasy(pos, dir, 8, 8, indicator_col, 180)
@@ -213,6 +213,9 @@ function GM:PostDrawTranslucentRenderables()
 						render.DrawQuadEasy(pos, dir, 8, 8, indicator_col, 180)
 					elseif v:GetRole() == ROLE_ASSASSIN then
 						render.SetMaterial(indicator_matass_noz)
+						render.DrawQuadEasy(pos, dir, 8, 8, indicator_col, 180)
+					elseif v:GetRole() == ROLE_CURSED then
+						render.SetMaterial(indicator_matcur_noz)
 						render.DrawQuadEasy(pos, dir, 8, 8, indicator_col, 180)
 					elseif v:GetRole() == ROLE_JESTER or v:GetRole() == ROLE_SWAPPER then
 						render.SetMaterial(indicator_matjes)
@@ -381,7 +384,7 @@ function GM:HUDDrawTargetID()
 		if ent:GetActiveWeapon():IsValid() and ent:GetActiveWeapon():GetClass() == "weapon_ttt_cloak" then
 			client.last_id = nil
 			
-			if client:GetRole() == ROLE_TRAITOR or client:GetRole() == ROLE_HYPNOTIST or client:GetRole() == ROLE_ZOMBIE or client:GetRole() == ROLE_VAMPIRE or client:GetRole() == ROLE_ASSASSIN or client:IsSpec() then
+			if client:GetRole() == ROLE_TRAITOR or client:GetRole() == ROLE_HYPNOTIST or client:GetRole() == ROLE_ZOMBIE or client:GetRole() == ROLE_VAMPIRE or client:GetRole() == ROLE_ASSASSIN or client:GetRole() == ROLE_CURSED or client:IsSpec() then
 				text = ent:Nick() .. L.target_disg
 			else
 				return
@@ -410,7 +413,7 @@ function GM:HUDDrawTargetID()
 			target_doctor = ent:IsRole(ROLE_DOCTOR)
 			target_cursed = ent:IsRole(ROLE_CURSED)
 		end
-		if (client:GetRole() == ROLE_TRAITOR or client:GetRole() == ROLE_HYPNOTIST or client:GetRole() == ROLE_ZOMBIE or client:GetRole() == ROLE_VAMPIRE or client:GetRole() == ROLE_ASSASSIN) and GetRoundState() == ROUND_ACTIVE then
+		if (client:GetRole() == ROLE_TRAITOR or client:GetRole() == ROLE_HYPNOTIST or client:GetRole() == ROLE_ZOMBIE or client:GetRole() == ROLE_VAMPIRE or client:GetRole() == ROLE_ASSASSIN or client:GetRole() == ROLE_CURSED) and GetRoundState() == ROUND_ACTIVE then
 			target_fellow_traitor = ent:IsRole(ROLE_TRAITOR)
 			target_fellow_zombie = ent:IsRole(ROLE_ZOMBIE)
 			target_hypnotist = ent:IsRole(ROLE_HYPNOTIST)
@@ -418,6 +421,7 @@ function GM:HUDDrawTargetID()
 			target_jester = ent:IsRole(ROLE_JESTER) or ent:IsRole(ROLE_SWAPPER)
 			target_vampire = ent:IsRole(ROLE_VAMPIRE)
 			target_assassin = ent:IsRole(ROLE_ASSASSIN)
+			target_cursed = ent:IsRole(ROLE_CURSED)
 		end
 		if client:GetRole() == ROLE_ASSASSIN and GetRoundState() >= ROUND_ACTIVE then
 			target_current_target = (ent:Nick() == client:GetNWString("AssassinTarget", ""))
@@ -625,7 +629,7 @@ function GM:HUDDrawTargetID()
 	elseif target_fellow_zombie or (target_glitch and client:GetRole() == ROLE_ZOMBIE) then
 		text = L.target_fellow_zombie
 		clr = Color(69, 97, 0, 200)
-	elseif target_corpse and (client:IsActiveDetective() or client:IsActiveTraitor() or client:IsActiveMercenary() or client:IsActiveZombie() or client:IsActiveVampire() or client:IsActiveHypnotist() or client:IsActiveAssassin() or client:IsActiveKiller() or client:IsActiveDoctor()) and CORPSE.GetCredits(ent, 0) > 0 then
+	elseif target_corpse and (client:IsActiveDetective() or client:IsActiveTraitor() or client:IsActiveMercenary() or client:IsActiveZombie() or client:IsActiveVampire() or client:IsActiveHypnotist() or client:IsActiveAssassin() or client:IsActiveCursed() or client:IsActiveKiller() or client:IsActiveDoctor()) and CORPSE.GetCredits(ent, 0) > 0 then
 		text = L.target_credits
 		clr = COLOR_YELLOW
 	end
