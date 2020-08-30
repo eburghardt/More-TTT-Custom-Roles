@@ -498,7 +498,7 @@ function CLSCORE:ShowPanel()
 						skullIcon:SetImage("vgui/ttt/score_skullicon.png")
 					end
 					countI = countI + 1
-				elseif role == "tra" or role == "hyp" or role == "zom" or role == "vam" or role == "ass" or string.sub(role, 5) == "hyped" or string.sub(role, 5) == "zomed" then
+				elseif role == "tra" or role == "hyp" or role == "zom" or role == "vam" or role == "ass" or role == "cur" or string.sub(role, 5) == "hyped" or string.sub(role, 5) == "zomed" then
 					roleIcon:SetPos(354, 123 + 33 * countT)
 					nicklbl:SetPos(392, 121 + 33 * countT)
 					if hasDisconnected then
