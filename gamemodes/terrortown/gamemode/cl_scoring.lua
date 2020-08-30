@@ -604,10 +604,10 @@ function CLSCORE:Reset()
 	self.ZombieIDs = {}
 	self.VampireIDs = {}
 	self.SwapperIDs = {}
-	self.CursedIDs = {}
 	self.AssassinIDs = {}
 	self.KillerIDs = {}
 	self.DoctorIDs = {}
+	self.CursedIDs = {}
 	self.Scores = {}
 	self.Players = {}
 	self.RoundStarted = 0
