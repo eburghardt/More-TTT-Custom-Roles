@@ -487,7 +487,7 @@ function GM:HUDDrawTargetID()
 		elseif target_doctor then
 			surface.SetDrawColor(7, 183, 160, 200)
 		elseif target_detraitor then
-			surface.SetDrawColor(205, 196, 75, 200))
+			surface.SetDrawColor(205, 196, 75, 200)
 		end
 		surface.DrawTexturedRect(x - 32, y - 32, 64, 64)
 	end
