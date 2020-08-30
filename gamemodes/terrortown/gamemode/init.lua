@@ -1266,10 +1266,10 @@ function SelectRoles()
 				elseif role == ROLE_GLITCH then
 					hasGlitch = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Glitch")
-				elseif role = ROLE_DOCTOR then
+				elseif role == ROLE_DOCTOR then
 					hasDoctor = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Doctor")
-				elseif role = ROLE_DETRAITOR then
+				elseif role == ROLE_DETRAITOR then
 					hasSpecial = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Detraitor")
 				end
