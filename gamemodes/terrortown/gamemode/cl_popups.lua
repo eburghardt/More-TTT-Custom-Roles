@@ -18,9 +18,6 @@ local function GetTextForRole(role)
 
 	elseif role == ROLE_DOCTOR then
 		return GetPTranslation("info_popup_doctor", { menukey = Key("+menu_context", "c") })
-
-	elseif role == ROLE_CURSED then
-		return GetPTranslation("info_popup_cursed", { menukey = Key("+menu_context", "c") })
 	
 	elseif role == ROLE_HYPNOTIST then
 		local traitors = {}
@@ -106,6 +103,32 @@ local function GetTextForRole(role)
 		end
 		
 		return text
+
+	elseif role == ROLE_CURSED then
+		local traitors = {}
+		for _, ply in pairs(player.GetAll()) do
+			if ply:IsTraitor() then
+				table.insert(traitors, ply)
+			end
+		end
+		
+		local text
+		if #traitors > 0 then
+			local traitorlist = ""
+			
+			for k, ply in pairs(traitors) do
+				if ply ~= LocalPlayer() then
+					traitorlist = traitorlist .. string.rep(" ", 42) .. ply:Nick() .. "\n"
+				end
+			end
+			
+			text = GetPTranslation("info_popup_cursed",
+				{ menukey = menukey, traitorlist = traitorlist })
+		else
+			text = GetPTranslation("info_popup_cursed_alone", { menukey = menukey })
+		end
+		
+		return text
 	
 	elseif role == ROLE_SWAPPER then
 		return GetPTranslation("info_popup_swapper", { menukey = Key("+menu_context", "C") })
@@ -144,6 +167,7 @@ local function GetTextForRole(role)
 		local hypnotists = {}
 		local vampires = {}
 		local assassins = {}
+		local curseds = {}
 		local glitches = {}
 		for _, ply in pairs(player.GetAll()) do
 			if ply:IsTraitor() then
@@ -154,6 +178,9 @@ local function GetTextForRole(role)
 			elseif ply:IsVampire() then
 				table.insert(traitors, ply)
 				table.insert(vampires, ply)
+			elseif ply:isCursed() then
+				table.insert(traitors, ply)
+				table.insert(curseds, ply)
 			elseif ply:IsAssassin() then
 				table.insert(traitors, ply)
 				table.insert(assassins, ply)
@@ -191,6 +218,15 @@ local function GetTextForRole(role)
 					end
 				end
 				text = GetPTranslation("info_popup_traitor_vampire", { menukey = menukey, traitorlist = traitorlist, vampirelist = vampirelist })
+			elseif #curseds > 0 then
+				local cursedlist = ""
+				
+				for k, ply in pairs(curseds) do
+					if ply ~= LocalPlayer() then
+						cursedlist = cursedlist .. string.rep(" ", 42) .. ply:Nick() .. "\n"
+					end
+				end
+				text = GetPTranslation("info_popup_traitor_cursed", { menukey = menukey, traitorlist = traitorlist, cursedlist = cursedlist })
 			elseif #assassins > 0 then
 				local assassinlist = ""
 				
