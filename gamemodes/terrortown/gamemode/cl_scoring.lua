@@ -23,6 +23,7 @@ CLSCORE.VampireIDs = {}
 CLSCORE.SwapperIDs = {}
 CLSCORE.AssassinIDs = {}
 CLSCORE.KillerIDs = {}
+CLSCORE.CursedIDs = {}
 CLSCORE.Players = {}
 CLSCORE.StartTime = 0
 CLSCORE.Panel = nil
@@ -234,7 +235,7 @@ function CLSCORE:BuildScorePanel(dpanel)
 	for id, s in pairs(scores) do
 		if id ~= -1 then
 			local was_traitor = s.was_traitor
-			local role = was_traitor and T("traitor") or (s.was_detective and T("detective") or (s.was_hypnotist and T("hypnotist") or (s.was_mercenary and T("mercenary") or (s.was_jester and T("jester") or (s.was_phantom and T("phantom") or (s.was_glitch and T("glitch") or (s.was_zombie and T("zombie") or (s.was_vampire and T("vampire") or (s.was_swapper and T("swapper") or (s.was_assassin and T("assassin") or (s.was_killer and T("killer") or (s.was_doctor and T("doctor")) or T("innocent"))))))))))))
+			local role = was_traitor and T("traitor") or (s.was_detective and T("detective") or (s.was_hypnotist and T("hypnotist") or (s.was_mercenary and T("mercenary") or (s.was_jester and T("jester") or (s.was_phantom and T("phantom") or (s.was_glitch and T("glitch") or (s.was_zombie and T("zombie") or (s.was_vampire and T("vampire") or (s.was_swapper and T("swapper") or (s.was_assassin and T("assassin") or (s.was_killer and T("killer") or (s.was_doctor and T("doctor")) or (s.was_cursed and T("cursed"))or T("innocent"))))))))))))
 			
 			local surv = ""
 			if s.deaths > 0 then
@@ -387,7 +388,7 @@ function CLSCORE:ShowPanel()
 	
 	for id, s in pairs(scores) do
 		if id ~= -1 then
-			local role = s.was_traitor and "tra" or (s.was_detective and "det" or (s.was_hypnotist and "hyp" or (s.was_jester and "jes" or (s.was_swapper and "swa" or (s.was_mercenary and "mer" or (s.was_glitch and "gli" or (s.was_phantom and "pha" or (s.was_zombie and "zom" or (s.was_assassin and "ass" or (s.was_vampire and "vam" or (s.was_killer and "kil" or (s.was_doctor and "doc" or "inn"))))))))))))
+			local role = s.was_traitor and "tra" or (s.was_detective and "det" or (s.was_hypnotist and "hyp" or (s.was_jester and "jes" or (s.was_swapper and "swa" or (s.was_mercenary and "mer" or (s.was_glitch and "gli" or (s.was_phantom and "pha" or (s.was_zombie and "zom" or (s.was_assassin and "ass" or (s.was_vampire and "vam" or (s.was_killer and "kil" or (s.was_doctor and "doc" or (s.was_cursed and "cursed" or "inn"))))))))))))
 			
 			if role == "swa" and jesterkillerrole >= 0 then
 				if jesterkillerrole == 0 then
@@ -418,6 +419,8 @@ function CLSCORE:ShowPanel()
 					role = "kil"
 				elseif jesterkillerrole == 13 then
 					role = "doc"
+				elseif jesterkillerrole == 14 then
+					role = "cur"
 				end
 			end
 			
@@ -480,7 +483,7 @@ function CLSCORE:ShowPanel()
 				nicklbl:SetTextColor(COLOR_WHITE)
 				nicklbl:SizeToContents()
 				
-				if role == "inn" or role == "det" or role == "mer" or role == "pha" or role == "gli" or role == "doc" then
+				if role == "inn" or role == "det" or role == "mer" or role == "pha" or role == "gli" or role == "doc" or role == "cur" then
 					roleIcon:SetPos(10, 123 + 33 * countI)
 					nicklbl:SetPos(48, 121 + 33 * countI)
 					if hasDisconnected then
@@ -601,6 +604,7 @@ function CLSCORE:Reset()
 	self.ZombieIDs = {}
 	self.VampireIDs = {}
 	self.SwapperIDs = {}
+	self.CursedIDs = {}
 	self.AssassinIDs = {}
 	self.KillerIDs = {}
 	self.DoctorIDs = {}
@@ -623,6 +627,7 @@ function CLSCORE:Init(events)
 	local phantom = nil
 	local zombie = nil
 	local vampire = nil
+	local cursed = nil
 	local swapper = nil
 	local assassin = nil
 	local killer = nil
@@ -644,6 +649,7 @@ function CLSCORE:Init(events)
 			assassin = e.assassin_ids
 			killer = e.killer_ids
 			doctor = e.doctor_ids
+			cursed = e.cursed_ids
 		end
 		
 		if starttime and traitors then
@@ -661,7 +667,7 @@ function CLSCORE:Init(events)
 		end
 	end
 	
-	scores = ScoreEventLog(events, scores, traitors, detectives, hypnotist, mercenary, jester, phantom, glitch, zombie, vampire, swapper, assassin, killer, doctor)
+	scores = ScoreEventLog(events, scores, traitors, detectives, hypnotist, mercenary, jester, phantom, glitch, zombie, vampire, swapper, assassin, killer, doctor, cursed)
 	
 	self.Players = nicks
 	self.Scores = scores
@@ -678,6 +684,7 @@ function CLSCORE:Init(events)
 	self.AssassinIDs = assassin
 	self.KillerIDs = killer
 	self.DoctorIDs = doctor
+	self.CursedIDs = cursed
 	self.StartTime = starttime
 	self.Events = events
 end
