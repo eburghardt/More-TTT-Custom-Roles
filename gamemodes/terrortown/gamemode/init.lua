@@ -91,6 +91,7 @@ CreateConVar("ttt_swapper_enabled", "1")
 CreateConVar("ttt_assassin_enabled", "1")
 CreateConVar("ttt_killer_enabled", "1")
 CreateConVar("ttt_doctor_enabled", "1")
+CreateConVar("ttt_cursed_enabled", "1")
 
 CreateConVar("ttt_zombie_chance", "0.1")
 CreateConVar("ttt_hypnotist_chance", "0.2")
@@ -103,6 +104,7 @@ CreateConVar("ttt_jester_chance", "0.25")
 CreateConVar("ttt_swapper_chance", "0.25")
 CreateConVar("ttt_killer_chance", "0.25")
 CreateConVar("ttt_doctor_chance", "0.25")
+CreateConVar("ttt_cursed_chance", "0.2")
 
 CreateConVar("ttt_mercenary_required_innos", "2")
 CreateConVar("ttt_hypnotist_required_traitors", "2")
@@ -114,6 +116,7 @@ CreateConVar("ttt_swapper_required_innos", "2")
 CreateConVar("ttt_assassin_required_traitors", "2")
 CreateConVar("ttt_killer_required_innos", "3")
 CreateConVar("ttt_doctor_required_innos", "2")
+CreateConVar("ttt_cursed_required_traitors", "2")
 
 CreateConVar("ttt_zombie_pct", "0.33")
 
@@ -134,6 +137,8 @@ CreateConVar("ttt_det_credits_traitordead", "1")
 CreateConVar("ttt_mer_credits_starting", "1")
 CreateConVar("ttt_kil_credits_starting", "2")
 CreateConVar("ttt_doc_credits_starting", "1")
+CreateConVar("ttt_cur_credits_starting", "1")
+
 
 CreateConVar("ttt_detective_search_only", "1", FCVAR_REPLICATED)
 
@@ -622,11 +627,12 @@ function TellTraitorsAboutTraitors()
 	local hypnotistnick = {}
 	local vampirenick = {}
 	local assassinnick = {}
+	local cursednick = {}
 	local glitchnick = {}
 	local jesternick = {}
 	local killernick = {}
 	for k, v in pairs(player.GetAll()) do
-		if v:IsTraitor() or v:IsHypnotist() or v:IsVampire() or v:IsZombie() or v:IsAssassin() then
+		if v:IsTraitor() or v:IsHypnotist() or v:IsVampire() or v:IsZombie() or v:IsAssassin() or v:IsCursed() then
 			table.insert(traitornicks, v:Nick())
 		elseif v:IsGlitch() then
 			table.insert(traitornicks, v:Nick())
@@ -641,7 +647,7 @@ function TellTraitorsAboutTraitors()
 	-- This is ugly as hell, but it's kinda nice to filter out the names of the
 	-- traitors themselves in the messages to them
 	for k, v in pairs(player.GetAll()) do
-		if v:IsTraitor() or v:IsHypnotist() or v:IsVampire() or v:IsZombie() or v:IsAssassin() then
+		if v:IsTraitor() or v:IsHypnotist() or v:IsVampire() or v:IsZombie() or v:IsAssassin() or v:IsCursed() then
 			if table.Count(glitchnick) > 0 then
 				v:PrintMessage(HUD_PRINTTALK, "There is a Glitch.")
 				v:PrintMessage(HUD_PRINTCENTER, "There is a Glitch.")
@@ -933,10 +939,10 @@ function LogScore(type)
 	end
 	
 	local roundRoles = { false, false, false, false, false, false, false, false, false, false, false, false }
-	local roleNames = { "Innocent", "Traitor", "Detective", "Mercenary", "Jester", "Phantom", "Hypnotist", "Glitch", "Zombie", "Vampire", "Swapper", "Assassin", "Killer", "Doctor" }
+	local roleNames = { "Innocent", "Traitor", "Detective", "Mercenary", "Jester", "Phantom", "Hypnotist", "Glitch", "Zombie", "Vampire", "Swapper", "Assassin", "Killer", "Doctor", "Cursed" }
 	
 	for k, v in pairs(player.GetAll()) do
-		local didWin = ((type == WIN_INNOCENT or type == WIN_TIMELIMIT) and (v:GetRole() == ROLE_INNOCENT or v:GetRole() == ROLE_DETECTIVE or v:GetRole() == ROLE_GLITCH or v:GetRole() == ROLE_MERCENARY or v:GetRole() == ROLE_PHANTOM)) or (type == WIN_TRAITOR and (v:GetRole() == ROLE_TRAITOR or v:GetRole() == ROLE_ASSASSIN or v:GetRole() == ROLE_HYPNOTIST or v:GetRole() == ROLE_VAMPIRE or v:GetRole() == ROLE_ZOMBIE)) or (type == WIN_JESTER and (v:GetRole() == ROLE_JESTER or v:GetRole() == ROLE_SWAPPER))
+		local didWin = ((type == WIN_INNOCENT or type == WIN_TIMELIMIT) and (v:GetRole() == ROLE_INNOCENT or v:GetRole() == ROLE_DETECTIVE or v:GetRole() == ROLE_GLITCH or v:GetRole() == ROLE_MERCENARY or v:GetRole() == ROLE_PHANTOM)) or (type == WIN_TRAITOR and (v:GetRole() == ROLE_TRAITOR or v:GetRole() == ROLE_ASSASSIN or v:GetRole() == ROLE_HYPNOTIST or v:GetRole() == ROLE_VAMPIRE or v:GetRole() == ROLE_ZOMBIE or v:GetRole() == ROLE_CURSED)) or (type == WIN_JESTER and (v:GetRole() == ROLE_JESTER or v:GetRole() == ROLE_SWAPPER))
 		
 		if not playerStats[v:Nick()] then
 			playerStats[v:Nick()] = { 0, 0 } -- Wins, Rounds
@@ -1032,7 +1038,7 @@ function GM:TTTCheckForWin()
 	local killer_alive = false
 	for k, v in pairs(player.GetAll()) do
 		if (v:Alive() and v:IsTerror()) or v:GetPData("IsZombifying", 0) == 1 then
-			if v:GetTraitor() or v:GetHypnotist() or v:GetZombie() or v:GetVampire() or v:GetAssassin() or v:GetPData("IsZombifying", 0) == 1 then
+			if v:GetTraitor() or v:GetHypnotist() or v:GetZombie() or v:GetVampire() or v:GetAssassin() or v:GetCursed() or v:GetPData("IsZombifying", 0) == 1 then
 				traitor_alive = true
 			elseif v:GetJester() then
 				jester_alive = true
@@ -1118,6 +1124,7 @@ function SelectRoles()
 		[ROLE_ASSASSIN] = {},
 		[ROLE_KILLER] = {},
 		[ROLE_DOCTOR] = {}
+		[ROLE_CURSED] = {}
 	};
 	
 	if not GAMEMODE.LastRole then GAMEMODE.LastRole = {} end
@@ -1154,6 +1161,9 @@ function SelectRoles()
 	
 	local assassin_chance = GetConVar("ttt_assassin_chance"):GetFloat()
 	local real_assassin_chance = assassin_chance / ((1 - real_zombie_chance) * (1 - real_hypnotist_chance) * (1 - real_vampire_chance))
+
+	local cursed_chance = GetConVar("ttt_cursed_chance"):GetFloat()
+	local real_cursed_chance = cursed_chance / ((1 - real_zombie_chance) * (1 - real_hypnotist_chance) * (1 - real_vampire_chance) * (1 - real_assassin_chance))
 	
 	local jester_chance = GetConVar("ttt_jester_chance"):GetFloat()
 	local real_jester_chance = jester_chance
@@ -1165,7 +1175,7 @@ function SelectRoles()
 	local real_killer_chance = killer_chance / ((1 - jester_chance) * (1 - swapper_chance))
 	
 	local glitch_chance = GetConVar("ttt_glitch_chance"):GetFloat()
-	local real_glitch_chance = glitch_chance / (1 - hypnotist_chance - vampire_chance - assassin_chance)
+	local real_glitch_chance = glitch_chance / (1 - hypnotist_chance - vampire_chance - assassin_chance - cursed_chance)
 	
 	local phantom_chance = GetConVar("ttt_phantom_chance"):GetFloat()
 	local real_phantom_chance = phantom_chance
@@ -1175,6 +1185,7 @@ function SelectRoles()
 
 	local doctor_chance = GetConVar("ttt_doctor_chance"):GetFloat()
 	local real_doctor_chance = doctor_chance
+
 	
 	if choice_count == 0 then return end
 	
@@ -1262,6 +1273,10 @@ function SelectRoles()
 				elseif role = ROLE_DOCTOR then
 					hasDoctor = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Doctor")
+				elseif role = ROLE_CURSED then
+					ts = ts + 1
+					hasSpecial = true
+					print(v:Nick() .. " (" .. v:SteamID() .. ") - Cursed")
 				end
 			end
 		end
@@ -1306,6 +1321,10 @@ function SelectRoles()
 					hasSpecial = true
 				elseif ts == GetConVar("ttt_assassin_required_traitors"):GetInt() - 1 and GetConVar("ttt_assassin_enabled"):GetInt() == 1 and math.random() <= real_assassin_chance and not hasSpecial then
 					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Assassin")
+					pply:SetRole(ROLE_ASSASSIN)
+					hasSpecial = true
+				elseif ts == GetConVar("ttt_cursed_required_traitors"):GetInt() - 1 and GetConVar("ttt_cursed_enabled"):GetInt() == 1 and math.random() <= real_cursed_chance and not hasSpecial then
+					print(pply:Nick() .. " (" .. pply:SteamID() .. ") - Cursed")
 					pply:SetRole(ROLE_ASSASSIN)
 					hasSpecial = true
 				else
