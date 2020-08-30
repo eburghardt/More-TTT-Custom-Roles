@@ -19,7 +19,7 @@ local function GetTextForRole(role)
 	elseif role == ROLE_DOCTOR then
 		return GetPTranslation("info_popup_doctor", { menukey = Key("+menu_context", "c") })
 	
-	elseif role = ROLE_DETRAITOR then
+	elseif role == ROLE_DETRAITOR then
 		local traitors = {}
 		for _, ply in pairs(player.GetAll()) do
 			if ply:IsTraitor() then

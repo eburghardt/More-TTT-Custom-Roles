@@ -74,7 +74,7 @@ local function IconForInfoType(t, data)
 			eq_armor = "armor",
 			eq_radar = "radar",
 			eq_disg = "disguise",
-			role = { [ROLE_TRAITOR] = "sym_tra", [ROLE_DETECTIVE] = "sym_det", [ROLE_MERCENARY] = "sym_mer", [ROLE_HYPNOTIST] = "sym_hyp", [ROLE_GLITCH] = "sym_gli", [ROLE_JESTER] = "sym_jes", [ROLE_PHANTOM] = "sym_pha", [ROLE_ZOMBIE] = "sym_zom", [ROLE_VAMPIRE] = "sym_vam", [ROLE_SWAPPER] = "sym_swa", [ROLE_ASSASSIN] = "sym_ass", [ROLE_KILLER] = "sym_kil", [ROLE_DOCTOR] = "sym_doc", [ROLE_DETRAITOR] = "sym_der" [ROLE_INNOCENT] = "sym_inn" },
+			role = { [ROLE_TRAITOR] = "sym_tra", [ROLE_DETECTIVE] = "sym_det", [ROLE_MERCENARY] = "sym_mer", [ROLE_HYPNOTIST] = "sym_hyp", [ROLE_GLITCH] = "sym_gli", [ROLE_JESTER] = "sym_jes", [ROLE_PHANTOM] = "sym_pha", [ROLE_ZOMBIE] = "sym_zom", [ROLE_VAMPIRE] = "sym_vam", [ROLE_SWAPPER] = "sym_swa", [ROLE_ASSASSIN] = "sym_ass", [ROLE_KILLER] = "sym_kil", [ROLE_DOCTOR] = "sym_doc", [ROLE_DETRAITOR] = "sym_der", [ROLE_INNOCENT] = "sym_inn" },
 			c4 = "code",
 			dmg = DmgToMat,
 			wep = WeaponToIcon,

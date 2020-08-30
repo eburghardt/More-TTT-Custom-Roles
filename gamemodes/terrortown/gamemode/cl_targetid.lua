@@ -159,7 +159,7 @@ function GM:PostDrawTranslucentRenderables()
 				if(clientRole == ROLE_TRAITOR or clientRole == ROLE_VAMPIRE or clientRole == ROLE_HYPNOTIST or clientRole == ROLE_ASSASSIN) then
 					render.SetMaterial(indicator_matder)
 					render.DrawQuadEasy(pos, dir, 8, 8, indicator_col, 180)
-				else then
+				else
 					render.SetMaterial(indicator_matdet)
 					render.DrawQuadEasy(pos, dir, 8, 8, indicator_col, 180)
 				end
