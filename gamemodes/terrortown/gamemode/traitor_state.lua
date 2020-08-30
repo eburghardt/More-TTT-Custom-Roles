@@ -471,7 +471,7 @@ local function force_detraitor(ply)
 	SendFullStateUpdate()
 end
 
-concommand.Add("ttt_force_detective", force_detective, nil, nil, FCVAR_CHEAT)
+concommand.Add("ttt_force_detraitor", force_detraitor, nil, nil, FCVAR_CHEAT)
 
 concommand.Add("ttt_spectate", force_spectate)
 net.Receive("TTT_Spectate", function(l, pl)
