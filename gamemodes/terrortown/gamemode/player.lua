@@ -942,6 +942,16 @@ function GM:PlayerDeath(victim, infl, attacker)
 		end
 		deadPhantom = victim
 	end
+
+	-- cursed death effect --
+	if victim:GetRole() == ROLE_CURSED and attacker:IsPlayer() and attacker ~= victim and infl:GetClass() ~= env_fire and GetRoundState() == ROUND_ACTIVE then
+		attacker:SetHealth(1)
+		attacker:PrintMessage(HUD_PRINTCENTER, "You have been cursed.")
+		end
+		victim:PrintMessage(HUD_PRINTCENTER, "Your attacker has been cursed.")
+	end
+
+
 	
 	if victim:GetRole() == ROLE_SWAPPER and attacker:IsPlayer() and attacker ~= victim and infl:GetClass() ~= env_fire and GetRoundState() == ROUND_ACTIVE then
 		for k, ply in pairs(player.GetAll()) do
