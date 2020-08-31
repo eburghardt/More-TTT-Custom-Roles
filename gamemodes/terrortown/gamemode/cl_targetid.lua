@@ -506,7 +506,7 @@ function GM:HUDDrawTargetID()
 		draw.SimpleText(text, font, x, y, color)
 		
 		-- for ragdolls searched by detectives, add icon
-		if ent.search_result and client:IsDetective() then
+		if ent.search_result and (client:IsDetective() or client:IsDetraitor()) then
 			-- if I am detective and I know a search result for this corpse, then I
 			-- have searched it or another detective has
 			surface.SetMaterial(magnifier_mat)

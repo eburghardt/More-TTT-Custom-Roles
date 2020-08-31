@@ -257,7 +257,7 @@ function CORPSE.ShowSearch(ply, rag, covert, long_range)
 		SCORE:HandleCreditFound(ply, nick, credits)
 		return
 	elseif DetectiveMode() and not covert then
-		if ply:IsDetective() or not detectiveSearchOnly then
+		if (ply:IsDetective() or ply:IsDetraitor()) or not detectiveSearchOnly then
 			IdentifyBody(ply, rag)
 		elseif not ply:IsSpec() and not ownerEnt:GetNWBool("det_called", false) and not ownerEnt:GetNWBool("body_searched", false) then
 			if IsValid(rag) and rag:GetPos():Distance(ply:GetPos()) < 128 then
