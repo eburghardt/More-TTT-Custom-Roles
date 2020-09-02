@@ -81,6 +81,8 @@ function SendKillerList(ply_or_rf) SendRoleList(ROLE_KILLER, ply_or_rf) end
 
 function SendDetraitorList(ply_or_rf) SendRoleList(ROLE_DETRAITOR, ply_or_rf) end
 
+function SendCursedList(ply_or_rf) SendRoleList(ROLE_CURSED, ply_or_rf) end
+
 function SendInnocentList(ply_or_rf) SendRoleList(ROLE_INNOCENT, ply_or_rf) end
 
 function SendConfirmedTraitors(ply_or_rf)
@@ -103,6 +105,7 @@ function SendFullStateUpdate()
 	SendCursedList()
 	SendSwapperList()
 	SendAssassinList()
+	SendDetraitorList()
 	SendKillerList()
 	-- not useful to sync confirmed traitors here
 end
@@ -142,6 +145,7 @@ local function request_rolelist(ply)
 		SendCursedList(ply)
 		SendSwapperList(ply)
 		SendAssassinList(ply)
+		SendDetraitorList(ply)
 		SendKillerList(ply)
 		
 		if ply:IsTraitor() then
