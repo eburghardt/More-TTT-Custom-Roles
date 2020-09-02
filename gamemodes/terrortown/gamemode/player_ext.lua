@@ -80,6 +80,8 @@ function plymeta:SetDefaultCredits()
 		self:Setcredits(math.ceil(GetConVarNumber("ttt_det_credits_starting")))
 	elseif self:GetKiller() then
 		self:SetCredits(math.ceil(GetConVarNumber("ttt_kil_credits_starting")))
+	elseif self:GetCursed() then
+		self:SetCredits(math.ceil(GetConVarNumber("ttt_cur_credits_starting")))
 	else
 		self:SetCredits(0)
 	end

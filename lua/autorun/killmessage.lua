@@ -16,6 +16,7 @@ if (CLIENT) then
 		local AssassinColor = Color(112, 50, 0)
 		local KillerColor = Color(50, 0, 70)
 		local DoctorColor = Color(7, 183, 160)
+		local CursedColor = Color(2, 37, 69)
 		local DetraitorColor = Color(205, 196, 75)
 		
 		local NameColor = Color(142, 68, 173)
@@ -60,6 +61,9 @@ if (CLIENT) then
 		elseif role == ROLE_VAMPIRE then
 			col = VampireColor
 			role = "a vampire"
+		elseif role == ROLE_CURSED then
+			col = CursedColor
+			role = "cursed"
 		elseif role == ROLE_SWAPPER then
 			col = SwapperColor
 			role = "a swapper"

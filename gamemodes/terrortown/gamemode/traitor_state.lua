@@ -71,6 +71,8 @@ function SendZombieList(ply_or_rf) SendRoleList(ROLE_ZOMBIE, ply_or_rf) end
 
 function SendVampireList(ply_or_rf) SendRoleList(ROLE_VAMPIRE, ply_or_rf) end
 
+function SendCursedList(ply_or_rf) SendRoleList(ROLE_CURSED, ply_or_rf) end
+
 function SendSwapperList(ply_or_rf) SendRoleList(ROLE_SWAPPER, ply_or_rf) end
 
 function SendAssassinList(ply_or_rf) SendRoleList(ROLE_ASSASSIN, ply_or_rf) end
@@ -98,8 +100,10 @@ function SendFullStateUpdate()
 	SendPhantomList()
 	SendZombieList()
 	SendVampireList()
+	SendCursedList()
 	SendSwapperList()
 	SendAssassinList()
+	SendDetraitorList()
 	SendKillerList()
 	-- not useful to sync confirmed traitors here
 end
@@ -136,8 +140,10 @@ local function request_rolelist(ply)
 		SendPhantomList(ply)
 		SendZombieList(ply)
 		SendVampireList(ply)
+		SendCursedList(ply)
 		SendSwapperList(ply)
 		SendAssassinList(ply)
+		SendDetraitorList(ply)
 		SendKillerList(ply)
 		
 		if ply:IsTraitor() then
@@ -371,11 +377,31 @@ local function force_vampire(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
+	ply:Give("weapon_vam_fangs")
 	
 	SendFullStateUpdate()
 end
 
 concommand.Add("ttt_force_vampire", force_vampire, nil, nil, FCVAR_CHEAT)
+
+local function force_cursed(ply)
+	ply:SetRole(ROLE_CURSED)
+	ply:SetMaxHealth(100)
+	ply:SetHealth(100)
+	if ply:HasWeapon("weapon_hyp_brainwash") then
+		ply:StripWeapon("weapon_hyp_brainwash")
+	end
+	if ply:HasWeapon("weapon_doc_defib") then
+		ply:StripWeapon("weapon_doc_defib")
+	end
+	if ply:HasWeapon("weapon_vam_fangs") then
+		ply:StripWeapon("weapon_vam_fangs")
+	end
+	
+	SendFullStateUpdate()
+end
+
+concommand.Add("ttt_force_cursed", force_cursed, nil, nil, FCVAR_CHEAT)
 
 local function force_swapper(ply)
 	ply:SetRole(ROLE_SWAPPER)
@@ -390,7 +416,6 @@ local function force_swapper(ply)
 	if ply:HasWeapon("weapon_vam_fangs") then
 		ply:StripWeapon("weapon_vam_fangs")
 	end
-	ply:Give("weapon_vam_fangs")
 	
 	SendFullStateUpdate()
 end

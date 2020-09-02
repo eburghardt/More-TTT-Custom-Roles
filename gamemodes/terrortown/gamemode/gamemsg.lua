@@ -51,7 +51,7 @@ local function RoleChatMsg(sender, role, msg)
 	net.WriteUInt(role, 4)
 	net.WriteEntity(sender)
 	net.WriteString(msg)
-	if role == ROLE_TRAITOR or role == ROLE_ZOMBIE or role == ROLE_HYPNOTIST or role == ROLE_VAMPIRE or role == ROLE_ASSASSIN then
+	if role == ROLE_TRAITOR or role == ROLE_ZOMBIE or role == ROLE_HYPNOTIST or role == ROLE_VAMPIRE or role == ROLE_CURSED or role == ROLE_ASSASSIN then
 		net.Send(GetTraitorsFilter())
 	elseif role == ROLE_JESTER or role == ROLE_SWAPPER then
 		net.Send(GetTraitorsAndJestersFilter())
@@ -131,20 +131,24 @@ function GetDoctorFilter(alive_only)
 	return GetPlayerFilter(function(p) return p:IsDoctor() and (not alive_only or p:IsTerror()) end)
 end
 
+function GetCursedFilter(alive_only)
+	return GetPlayerFilter(function(p) return p:IsCursed() and (not alive_only or p:IsTerror()) end)
+end
+
 function GetDetraitorFilter(alive_only)
 	return GetPlayerFilter(function(p) return p:IsDetraitor() and (not alive_only or p:IsTerror()) end)
 end
 
 function GetInnocentFilter(alive_only)
-	return GetPlayerFilter(function(p) return (not (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsAssassin() or p:IsDetraitor())) and (not alive_only or p:IsTerror()) end)
+	return GetPlayerFilter(function(p) return (not (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsCursed() or p:IsAssassin() or p:IsDetraitor())) and (not alive_only or p:IsTerror()) end)
 end
 
 function GetTraitorsFilter(alive_only)
-	return GetPlayerFilter(function(p) return (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsAssassin() or p:IsDetraitor()) and (not alive_only or p:IsTerror()) end)
+	return GetPlayerFilter(function(p) return (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsCursed() or p:IsAssassin() or p:IsDetraitor()) and (not alive_only or p:IsTerror()) end)
 end
 
 function GetTraitorsAndJestersFilter(alive_only)
-	return GetPlayerFilter(function(p) return (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsAssassin() or p:IsDetraitor() or p:IsJester() or p:IsSwapper()) and (not alive_only or p:IsTerror()) end)
+	return GetPlayerFilter(function(p) return (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsCursed() or p:IsAssassin() or p:IsJester() or p:IsSwapper() or p:IsDetraitor()) and (not alive_only or p:IsTerror()) end)
 end
 
 function GetRoleFilter(role, alive_only)
@@ -211,12 +215,12 @@ function GM:PlayerSay(ply, text, team_only)
 			
 			table.insert(filtered, 1, "[MUMBLED]")
 			return table.concat(filtered, " ")
-		elseif team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsDetective() or ply:IsDetraitor() or ply:IsJester() or ply:IsSwapper()) then
+		elseif team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsCursed() or ply:IsAssassin() or ply:IsDetective() or ply:IsDetraitor() or ply:IsJester() or ply:IsSwapper()) then
 			local hasGlitch = false
 			for k, v in pairs(player.GetAll()) do
 				if v:IsGlitch() then hasGlitch = true end
 			end
-			if (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin()) and hasGlitch then
+			if (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsCursed()) and hasGlitch then
 				ply:SendLua("chat.AddText(\"The glitch is scrambling your communications\")")
 				return ""
 			else

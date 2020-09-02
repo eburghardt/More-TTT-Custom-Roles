@@ -32,6 +32,8 @@ function plymeta:GetZombie() return self:GetRole() == ROLE_ZOMBIE end
 
 function plymeta:GetVampire() return self:GetRole() == ROLE_VAMPIRE end
 
+function plymeta:GetCursed() return self:GetRole() == ROLE_CURSED end
+
 function plymeta:GetSwapper() return self:GetRole() == ROLE_SWAPPER end
 
 function plymeta:GetAssassin() return self:GetRole() == ROLE_ASSASSIN end
@@ -53,6 +55,7 @@ plymeta.IsSwapper = plymeta.GetSwapper
 plymeta.IsAssassin = plymeta.GetAssassin
 plymeta.IsKiller = plymeta.GetKiller
 plymeta.IsDoctor = plymeta.GetDoctor
+plymeta.IsCursed = plymeta.GetCursed
 plymeta.IsDetraitor = plymeta.GetDetraitor
 
 function plymeta:IsSpecial() return self:GetRole() ~= ROLE_INNOCENT end
@@ -87,6 +90,9 @@ function plymeta:IsActiveZombie() return self:IsActiveRole(ROLE_ZOMBIE) end
 
 function plymeta:IsActiveVampire() return self:IsActiveRole(ROLE_VAMPIRE) end
 
+function plymeta:IsActiveCursed() return self:IsActiveRole(ROLE_CURSED) end
+
+
 function plymeta:IsActiveSwapper() return self:IsActiveRole(ROLE_SWAPPER) end
 
 function plymeta:IsActiveAssassin() return self:IsActiveRole(ROLE_ASSASSIN) end
@@ -112,6 +118,7 @@ local role_strings = {
 	[ROLE_ASSASSIN] = "assassin",
 	[ROLE_KILLER] = "killer",
 	[ROLE_DOCTOR] = "doctor",
+	[ROLE_CURSED] = "cursed",
 	[ROLE_DETRAITOR] = "detraitor"
 };
 

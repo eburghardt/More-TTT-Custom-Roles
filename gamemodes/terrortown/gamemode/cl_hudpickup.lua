@@ -21,6 +21,7 @@ local pickupclr = {
 	[ROLE_ASSASSIN] = Color(112, 50, 0, 255),
 	[ROLE_KILLER] = Color(50, 0, 70, 255),
 	[ROLE_DOCTOR] = Color(7, 183, 160, 255),
+	[ROLE_CURSED] = Color(2, 37, 69, 255),
 	[ROLE_DETRAITOR] = Color(205, 196, 75, 255)
 }
 

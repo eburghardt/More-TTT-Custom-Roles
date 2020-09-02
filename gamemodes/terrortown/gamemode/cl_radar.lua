@@ -119,7 +119,7 @@ function RADAR:Draw(client)
 	surface.SetFont("HudSelectionText")
 	
 	-- C4 warnings
-	if self.bombs_count ~= 0 and (client:IsActiveTraitor() or client:IsActiveHypnotist() or client:IsActiveVampire() or client:IsActiveAssassin() or client:IsActiveDetraitor()) then
+	if self.bombs_count ~= 0 and (client:IsActiveTraitor() or client:IsActiveHypnotist() or client:IsActiveVampire() or client:IsActiveAssassin() or client:IsActiveCursed() or client:IsActiveDetraitor()) then
 		surface.SetTexture(c4warn)
 		surface.SetTextColor(200, 55, 55, 220)
 		surface.SetDrawColor(255, 255, 255, 200)
@@ -184,7 +184,7 @@ function RADAR:Draw(client)
 			end
 			
 			role = tgt.role
-			if client:GetTraitor() or client:GetHypnotist() or client:GetVampire() or client:GetAssassin() or client:GetDetraitor() then
+			if client:GetTraitor() or client:GetHypnotist() or client:GetVampire() or client:GetAssassin() or client:GetCursed() or client:GetDetraitor() then
 				if role == ROLE_TRAITOR or role == ROLE_GLITCH then
 					surface.SetDrawColor(255, 0, 0, alpha)
 					surface.SetTextColor(255, 0, 0, alpha)
@@ -197,6 +197,9 @@ function RADAR:Draw(client)
 				elseif role == ROLE_ASSASSIN then
 					surface.SetDrawColor(112, 50, 0, alpha)
 					surface.SetTextColor(112, 50, 0, alpha)
+				elseif role == ROLE_CURSED then
+					surface.SetDrawColor(2, 37, 69, alpha)
+					surface.SetTextColor(2, 37, 69, alpha)
 				elseif role == ROLE_DETRAITOR then
 					surface.SetDrawColor(205, 196, 75, alpha)
 					surface.SetTextColor(205, 196, 75, alpha)

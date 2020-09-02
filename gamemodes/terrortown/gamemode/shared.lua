@@ -26,6 +26,7 @@ ROLE_SWAPPER = 10
 ROLE_ASSASSIN = 11
 ROLE_KILLER = 12
 ROLE_DOCTOR = 13
+ROLE_CURSED = 14
 ROLE_DETRAITOR = 15
 ROLE_NONE = ROLE_INNOCENT
 
@@ -248,6 +249,11 @@ DefaultEquipment = {
 		"weapon_ttt_health_station"
 	},
 	[ROLE_VAMPIRE] = {
+		EQUIP_ARMOR,
+		EQUIP_RADAR,
+		"weapon_ttt_health_station"
+	},
+	[ROLE_CURSED] = {
 		EQUIP_ARMOR,
 		EQUIP_RADAR,
 		"weapon_ttt_health_station"
