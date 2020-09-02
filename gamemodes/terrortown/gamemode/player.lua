@@ -949,7 +949,6 @@ function GM:PlayerDeath(victim, infl, attacker)
 	if victim:GetRole() == ROLE_CURSED and attacker:IsPlayer() and attacker ~= victim and infl:GetClass() ~= env_fire and GetRoundState() == ROUND_ACTIVE then
 		attacker:SetHealth(1)
 		attacker:PrintMessage(HUD_PRINTCENTER, "You have been cursed.")
-		end
 		victim:PrintMessage(HUD_PRINTCENTER, "Your attacker has been cursed.")
 	end
 
@@ -1545,3 +1544,4 @@ end
 function GM:PlayerShouldTaunt(ply, actid)
 	return true
 end
+
