@@ -229,7 +229,7 @@ function SCORE:ApplyEventLogScores(wintype)
 			table.insert(assassins, ply:SteamID())
 		elseif ply:GetKiller() then
 			table.insert(killers, ply:SteamID())
-		elseif ply:GetDetraitors() then
+		elseif ply:GetDetraitor() then
 			table.insert(detraitors, ply:SteamID())
 		end
 	end
