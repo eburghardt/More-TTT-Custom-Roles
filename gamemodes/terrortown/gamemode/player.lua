@@ -38,7 +38,7 @@ function GM:PlayerInitialSpawn(ply)
 		SendAssassinList()
 		SendKillerList()
 		SendDoctorList()
-		sendCursedList()
+		SendCursedList()
 		SendDetraitorList()
 	end
 	
@@ -59,7 +59,7 @@ function GM:PlayerInitialSpawn(ply)
 		SendAssassinList(ply)
 		SendKillerList(ply)
 		SendDoctorList(ply)
-		sendCursedList(ply)
+		SendCursedList(ply)
 		SendDetraitorList(ply)
 	end
 	

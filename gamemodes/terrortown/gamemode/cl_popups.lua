@@ -204,7 +204,7 @@ local function GetTextForRole(role)
 			elseif ply:IsVampire() then
 				table.insert(traitors, ply)
 				table.insert(vampires, ply)
-			elseif ply:isCursed() then
+			elseif ply:IsCursed() then
 				table.insert(traitors, ply)
 				table.insert(curseds, ply)
 			elseif ply:IsAssassin() then
