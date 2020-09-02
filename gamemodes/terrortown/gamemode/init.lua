@@ -1279,7 +1279,7 @@ function SelectRoles()
 				elseif role == ROLE_DOCTOR then
 					hasDoctor = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Doctor")
-				elseif role = ROLE_CURSED then
+				elseif role == ROLE_CURSED then
 					ts = ts + 1
 					hasSpecial = true
 					print(v:Nick() .. " (" .. v:SteamID() .. ") - Cursed")

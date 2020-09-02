@@ -179,7 +179,7 @@ local function DrawBg(x, y, width, height, client)
 		col = bg_colors.killer
 	elseif client:GetDoctor() then
 		col = bg_colors.doctor
-	elseif client::GetCursed() then
+	elseif client:GetCursed() then
 		col = bg_colors.cursed
 	elseif client:GetDetraitor() then
 		col = bg_colors.detraitor

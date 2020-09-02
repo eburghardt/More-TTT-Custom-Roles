@@ -596,7 +596,7 @@ local function CheckCreditAward(victim, attacker)
 				LANG.Msg(GetAssassinFilter(true), "credit_tr_all", { num = amt })
 				
 				for _, ply in pairs(player.GetAll()) do
-					if ply:IsActiveTraitor() or ply:IsActiveHypnotist() or ply:IsActiveVampire() ply:IsActiveCursed() or ply:IsActiveAssassin() then
+					if ply:IsActiveTraitor() or ply:IsActiveHypnotist() or ply:IsActiveVampire() or ply:IsActiveCursed() or ply:IsActiveAssassin() then
 						ply:AddCredits(amt)
 					end
 				end

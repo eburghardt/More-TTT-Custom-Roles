@@ -401,7 +401,6 @@ end
 
 concommand.Add("ttt_force_cursed", force_cursed, nil, nil, FCVAR_CHEAT)
 
-==
 local function force_swapper(ply)
 	ply:SetRole(ROLE_SWAPPER)
 	ply:SetMaxHealth(100)
