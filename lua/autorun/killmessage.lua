@@ -63,7 +63,7 @@ if (CLIENT) then
 			role = "a vampire"
 		elseif role == ROLE_CURSED then
 			col = CursedColor
-			role = "a cursed"
+			role = "cursed"
 		elseif role == ROLE_SWAPPER then
 			col = SwapperColor
 			role = "a swapper"

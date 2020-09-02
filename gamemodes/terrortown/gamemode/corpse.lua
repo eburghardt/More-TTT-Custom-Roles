@@ -88,7 +88,7 @@ local function IdentifyBody(ply, rag)
 		elseif role == ROLE_DOCTOR then
 			roletext = "body_found_doc"
 		elseif role == ROLE_CURSED then
-			roletext = "body_found_cur"
+			roletext = "body_found_c"
 		elseif role == ROLE_DETRAITOR then
 			roletext = "body_found_der"
 		else

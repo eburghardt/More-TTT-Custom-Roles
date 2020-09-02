@@ -76,7 +76,7 @@ L.body_found_s = "They were a Swapper."
 L.body_found_a = "They were an Assassin."
 L.body_found_k = "They were a Killer."
 L.body_found_doc = "They were a Doctor."
-L.body_found_c = "They were a Cursed."
+L.body_found_c = "They were Cursed."
 L.body_found_der = "They were a Detraitor."
 L.body_found_i = "They were Innocent."
 
@@ -211,7 +211,7 @@ L.search_role_j = "This person was a Jester"
 L.search_role_p = "This person was a Phantom"
 L.search_role_z = "This person was a Zombie"
 L.search_role_v = "This person was a Vampire"
-L.search_role_c = "This person was a Cursed"
+L.search_role_c = "This person was Cursed"
 L.search_role_s = "This person was a Swapper"
 L.search_role_a = "This person was an Assassin"
 L.search_role_k = "This person was a Killer"
@@ -777,7 +777,7 @@ You can use your fangs to eat corpses and refill your health.
 
 Press {menukey} to receive your special equipment!]]
 
-L.info_popup_cursed = [[You are a Cursed! Work with fellow traitors to kill all others.
+L.info_popup_cursed = [[You are Cursed! Work with fellow traitors to kill all others.
 
 These are your comrades:
 {traitorlist}
@@ -786,7 +786,7 @@ When killed, your killer will be set to 1 HP.
 
 Press {menukey} to receive your special equipment!]]
 
-L.info_popup_cursed_alone = [[You are a Cursed! You have no fellow traitors this round.
+L.info_popup_cursed_alone = [[You are Cursed! You have no fellow traitors this round.
 
 Kill all others to win!
 
@@ -883,7 +883,7 @@ But take care, or your treason may be discovered...
 
 These are your comrades:
 {traitorlist}
-The following comrade is a cursed:
+The following comrade is cursed:
 {cursedlist}
 
 Press {menukey} to receive your special equipment!]]
