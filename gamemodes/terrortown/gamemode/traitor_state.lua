@@ -81,8 +81,6 @@ function SendKillerList(ply_or_rf) SendRoleList(ROLE_KILLER, ply_or_rf) end
 
 function SendDetraitorList(ply_or_rf) SendRoleList(ROLE_DETRAITOR, ply_or_rf) end
 
-function SendCursedList(ply_or_rf) SendRoleList(ROLE_CURSED, ply_or_rf) end
-
 function SendInnocentList(ply_or_rf) SendRoleList(ROLE_INNOCENT, ply_or_rf) end
 
 function SendConfirmedTraitors(ply_or_rf)

@@ -486,7 +486,7 @@ function CLSCORE:ShowPanel()
 				nicklbl:SetTextColor(COLOR_WHITE)
 				nicklbl:SizeToContents()
 				
-				if role == "inn" or role == "det" or role == "mer" or role == "pha" or role == "gli" or role == "doc" or role == "cur" then
+				if role == "inn" or role == "det" or role == "mer" or role == "pha" or role == "gli" or role == "doc" then
 					roleIcon:SetPos(10, 123 + 33 * countI)
 					nicklbl:SetPos(48, 121 + 33 * countI)
 					if hasDisconnected then

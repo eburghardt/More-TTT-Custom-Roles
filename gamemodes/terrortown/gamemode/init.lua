@@ -130,6 +130,13 @@ CreateConVar("ttt_credits_award_size", "1")
 CreateConVar("ttt_credits_award_repeat", "1")
 CreateConVar("ttt_credits_detectivekill", "1")
 
+-- Cursed credits --
+CreateConVar("ttt_cur_credits_starting", "1")
+CreateConVar("ttt_cur_credits_award_pct", "0.35")
+CreateConVar("ttt_cur_credits_award_size", "1")
+CreateConVar("ttt_cur_credits_award_repeat", "1")
+CreateConVar("ttt_cur_credits_detectivekill", "1")
+
 CreateConVar("ttt_credits_alonebonus", "1")
 
 -- Detective credits
@@ -140,7 +147,6 @@ CreateConVar("ttt_det_credits_traitordead", "1")
 CreateConVar("ttt_mer_credits_starting", "1")
 CreateConVar("ttt_kil_credits_starting", "2")
 CreateConVar("ttt_doc_credits_starting", "1")
-CreateConVar("ttt_cur_credits_starting", "1")
 
 
 CreateConVar("ttt_detective_search_only", "1", FCVAR_REPLICATED)
