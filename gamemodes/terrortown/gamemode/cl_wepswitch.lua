@@ -42,7 +42,8 @@ local col_active = {
 		[ROLE_ASSASSIN] = Color(112, 50, 0, 255),
 		[ROLE_KILLER] = Color(50, 0, 70, 255),
 		[ROLE_DOCTOR] = Color(7, 183, 160, 255),
-		[ROLE_CURSED] = Color(2, 37, 69, 255)
+		[ROLE_CURSED] = Color(2, 37, 69, 255),
+		[ROLE_DETRAITOR] = Color(205, 196, 75, 255)
 	},
 	bg = Color(20, 20, 20, 250),
 	text_empty = Color(200, 20, 20, 255),
@@ -67,7 +68,8 @@ local col_dark = {
 		[ROLE_ASSASSIN] = Color(112, 50, 0, 255),
 		[ROLE_KILLER] = Color(50, 0, 70, 255),
 		[ROLE_DOCTOR] = Color(0, 170, 150, 255),
-		[ROLE_CURSED] = Color(0, 25, 55, 255)
+		[ROLE_CURSED] = Color(0, 25, 55, 255),
+		[ROLE_DETRAITOR] = Color(200, 180, 60, 255)
 	},
 	bg = Color(20, 20, 20, 200),
 	text_empty = Color(200, 20, 20, 100),

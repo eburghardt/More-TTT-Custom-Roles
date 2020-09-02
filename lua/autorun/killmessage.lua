@@ -17,6 +17,7 @@ if (CLIENT) then
 		local KillerColor = Color(50, 0, 70)
 		local DoctorColor = Color(7, 183, 160)
 		local CursedColor = Color(2, 37, 69)
+		local DetraitorColor = Color(205, 196, 75)
 		
 		local NameColor = Color(142, 68, 173)
 		local UnknownColor = Color(152, 48, 196)
@@ -72,6 +73,9 @@ if (CLIENT) then
 		elseif role == ROLE_KILLER then
 			col = KillerColor
 			role = "a killer"
+		elseif role == ROLE_DETRAITOR then
+			col = DetraitorColor
+			role = "a detraitor"
 		else
 			col = InnoColor
 			role = "innocent"

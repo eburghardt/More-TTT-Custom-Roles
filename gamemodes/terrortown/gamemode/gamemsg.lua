@@ -135,6 +135,10 @@ function GetCursedFilter(alive_only)
 	return GetPlayerFilter(function(p) return p:IsCursed() and (not alive_only or p:IsTerror()) end)
 end
 
+function GetDetraitorFilter(alive_only)
+	return GetPlayerFilter(function(p) return p:IsDetraitor() and (not alive_only or p:IsTerror()) end)
+end
+
 function GetInnocentFilter(alive_only)
 	return GetPlayerFilter(function(p) return (not (p:IsTraitor() or p:IsZombie() or p:IsHypnotist() or p:IsVampire() or p:IsCursed() or p:IsAssassin())) and (not alive_only or p:IsTerror()) end)
 end
@@ -211,7 +215,7 @@ function GM:PlayerSay(ply, text, team_only)
 			
 			table.insert(filtered, 1, "[MUMBLED]")
 			return table.concat(filtered, " ")
-		elseif team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsCursed() or ply:IsAssassin() or ply:IsDetective() or ply:IsJester() or ply:IsSwapper()) then
+		elseif team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsCursed() or ply:IsAssassin() or ply:IsDetective() or ply:IsDetraitor() or ply:IsJester() or ply:IsSwapper()) then
 			local hasGlitch = false
 			for k, v in pairs(player.GetAll()) do
 				if v:IsGlitch() then hasGlitch = true end
