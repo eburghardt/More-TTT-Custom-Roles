@@ -211,7 +211,7 @@ function GM:PlayerSay(ply, text, team_only)
 			
 			table.insert(filtered, 1, "[MUMBLED]")
 			return table.concat(filtered, " ")
-		elseif team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsDetective() or ply:IsJester() or ply:IsSwapper()) then
+		elseif team_only and not team and (ply:IsTraitor() or ply:IsZombie() or ply:IsHypnotist() or ply:IsVampire() or ply:IsAssassin() or ply:IsDetective() or ply:IsDetraitor() or ply:IsJester() or ply:IsSwapper()) then
 			local hasGlitch = false
 			for k, v in pairs(player.GetAll()) do
 				if v:IsGlitch() then hasGlitch = true end

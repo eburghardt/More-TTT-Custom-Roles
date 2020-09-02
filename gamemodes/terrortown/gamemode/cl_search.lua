@@ -500,7 +500,9 @@ local function ReceiveRagdollSearch()
 	
 	search.owner = Entity(net.ReadUInt(8))
 	if not (IsValid(search.owner) and search.owner:IsPlayer() and (not search.owner:IsTerror())) then
-		search.owner = nil
+		if not search.owner:IsDetraitor() then
+			search.owner = nil
+		end
 	end
 	
 	search.nick = net.ReadString()

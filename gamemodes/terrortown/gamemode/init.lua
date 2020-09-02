@@ -1035,7 +1035,7 @@ function GM:TTTCheckForWin()
 	local killer_alive = false
 	for k, v in pairs(player.GetAll()) do
 		if (v:Alive() and v:IsTerror()) or v:GetPData("IsZombifying", 0) == 1 then
-			if v:GetTraitor() or v:GetHypnotist() or v:GetZombie() or v:GetVampire() or v:GetAssassin() v:GetDetraitor() or v:GetPData("IsZombifying", 0) == 1 then
+			if v:GetTraitor() or v:GetHypnotist() or v:GetZombie() or v:GetVampire() or v:GetAssassin() or v:GetDetraitor() or v:GetPData("IsZombifying", 0) == 1 then
 				traitor_alive = true
 			elseif v:GetJester() then
 				jester_alive = true
