@@ -47,7 +47,7 @@ surface.CreateFont("ScoreNicks", {
 })
 
 -- so much text here I'm using shorter names than usual
-local T = LANG.GetTranslationor
+local T = LANG.GetTranslation
 local PT = LANG.GetParamTranslation
 local jesterkiller = ""
 local jestervictim = ""
