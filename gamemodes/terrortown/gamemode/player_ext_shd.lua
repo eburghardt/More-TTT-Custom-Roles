@@ -92,7 +92,6 @@ function plymeta:IsActiveVampire() return self:IsActiveRole(ROLE_VAMPIRE) end
 
 function plymeta:IsActiveCursed() return self:IsActiveRole(ROLE_CURSED) end
 
-
 function plymeta:IsActiveSwapper() return self:IsActiveRole(ROLE_SWAPPER) end
 
 function plymeta:IsActiveAssassin() return self:IsActiveRole(ROLE_ASSASSIN) end

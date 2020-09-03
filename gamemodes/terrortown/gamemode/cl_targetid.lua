@@ -60,7 +60,6 @@ local indicator_matass = Material("vgui/ttt/sprite_let_ass")
 local indicator_matkil = Material("vgui/ttt/sprite_let_kil")
 local indicator_matdoc = Material("vgui/ttt/sprite_let_doc")
 local indicator_matcur = Material("vgui/ttt/sprite_let_cur")
-
 local indicator_matder = Material("vgui/ttt/sprite_let_der")
 
 local indicator_col = Color(255, 255, 255, 130)
@@ -429,6 +428,7 @@ function GM:HUDDrawTargetID()
 			target_killer = ent:IsRole(ROLE_KILLER)
 			target_doctor = ent:IsRole(ROLE_DOCTOR)
 			target_cursed = ent:IsRole(ROLE_CURSED)
+			target_detraitor = ent:IsRole(ROLE_DETRAITOR)
 		end
 		if (client:GetRole() == ROLE_TRAITOR or client:GetRole() == ROLE_HYPNOTIST or client:GetRole() == ROLE_ZOMBIE or client:GetRole() == ROLE_VAMPIRE or client:GetRole() == ROLE_ASSASSIN or client:GetRole() == ROLE_CURSED or client:GetRole() == ROLE_DETRAITOR) and GetRoundState() == ROUND_ACTIVE then
 			target_fellow_traitor = ent:IsRole(ROLE_TRAITOR)
