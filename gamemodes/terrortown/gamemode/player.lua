@@ -1544,4 +1544,3 @@ end
 function GM:PlayerShouldTaunt(ply, actid)
 	return true
 end
-
