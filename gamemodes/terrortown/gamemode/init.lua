@@ -1515,4 +1515,3 @@ function AnnounceVersion()
 		end
 	end
 end
-
