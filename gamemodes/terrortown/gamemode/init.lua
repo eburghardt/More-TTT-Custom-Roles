@@ -141,7 +141,6 @@ CreateConVar("ttt_mer_credits_starting", "1")
 CreateConVar("ttt_kil_credits_starting", "2")
 CreateConVar("ttt_doc_credits_starting", "1")
 
-
 CreateConVar("ttt_detective_search_only", "1", FCVAR_REPLICATED)
 
 -- Other
